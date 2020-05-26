@@ -1,0 +1,25 @@
+Host gitlab.home
+    Hostname 192.168.1.54
+
+Host cardiff
+    Hostname cardiff.rescomp.berkeley.edu
+    DynamicForward 9006
+    LocalForward 127.0.0.3:443 satorii.berkeley.edu:443
+
+Host ansible
+    Hostname 192.168.1.50
+    User root
+    IdentityFile ~/.ssh/yang@home/id_home
+
+Host control
+    Hostname 192.168.1.33
+    User root
+    IdentityFile ~/.ssh/yang@home/id_home
+
+Host rockstor
+    User root
+    IdentityFile ~/.ssh/yang@home/id_home
+
+Host do
+    Hostname itsnickyang.me
+    DynamicForward 9006
