@@ -1,0 +1,24 @@
+[user]
+    name = guppy0130
+    email = guppy0130@yahoo.com
+    signingkey = 9BC659A8D852FAE15936F18AB12A0C868D6866AC
+[includeIf "gitdir:berkeley/sait/"] # SAIT @ Berkeley
+    path = .gitconfig-sait
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+[commit]
+    gpgsign = true
+[core]
+    excludesfile = ~/.gitignore
+    ignorecase = false
+    autocrlf = false
+    autoeol = lf
+    eol = lf
+    editor = nvim
+[gpg]
+    program = C:\\Program Files (x86)\\gnupg\\bin\\gpg.exe
+[status]
+    submoduleSummary = true
