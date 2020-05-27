@@ -29,6 +29,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
+Plug 'her/synicons.vim'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
@@ -153,3 +154,8 @@ autocmd FileType startify IndentLinesDisable
 
 " fzf
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+" fix re-source devicons
+if exists("g:loaded_webdevicons")
+    call webdevicons#refresh()
+endif
