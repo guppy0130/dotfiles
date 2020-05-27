@@ -30,6 +30,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'her/synicons.vim'
+Plug 'albfan/nerdtree-git-plugin'
 call plug#end()
 
 " set up language servers
