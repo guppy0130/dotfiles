@@ -30,7 +30,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'her/synicons.vim'
-" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 " set up language servers
@@ -48,26 +47,6 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 autocmd BufWritePre *.yml :call LanguageClient#textDocument_formatting_sync()
-
-" firenvim
-" if exists('g:started_by_firenvim')
-"     set laststatus=0
-"     set guifont=FiraCode\ NF:h8
-" endif
-
-" let g:firenvim_config = {
-" \     'globalSettings': {
-" \         'alt': 'all',
-" \     },
-" \     'localSettings': {
-" \         '.*': {
-" \             'cmdline': 'neovim',
-" \             'priority': 0,
-" \             'selector': 'textarea',
-" \             'takeover': 'always',
-" \         }
-" \     }
-" \ }
 
 " vim-markdown
 let g:vim_markdown_frontmatter = 1
@@ -137,7 +116,14 @@ autocmd! User GoyoLeave Limelight!
 
 " nerdtree ignore latex stuff
 " also ignore vim swapfiles
-let NERDTreeIgnore = ['\.aux$', '\.dvi$', '\.ps$', '\.fdb_latexmk$', '\.log$', '\.pdf$', '\.fls$', '\.swp$', '\.bbl$', '\.bcf$', '\.blg$', '\.xml$', '\.ttt$', '\.fff$']
+" and node_modules
+let NERDTreeIgnore = ['\.aux$', '\.dvi$', '\.ps$', '\.fdb_latexmk$', '\.log$', '\.pdf$', '\.fls$', '\.swp$', '\.bbl$', '\.bcf$', '\.blg$', '\.xml$', '\.ttt$', '\.fff$', 'node_modules']
+" NERDTree folder +
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+" vim-devicons change icons
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
 
 " attempt to reset cursor?
 " dotfile specific.
