@@ -31,6 +31,9 @@ Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'her/synicons.vim'
 Plug 'albfan/nerdtree-git-plugin'
+if has('nvim')
+    Plug 'norcalli/nvim-colorizer.lua'
+endif
 call plug#end()
 
 " set up language servers
@@ -146,3 +149,9 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 if exists("g:loaded_webdevicons")
     call webdevicons#refresh()
 endif
+
+" colorizer
+if has('nvim')
+    lua require 'colorizer'.setup({'*';}, { mode = 'foreground' })
+endif
+
