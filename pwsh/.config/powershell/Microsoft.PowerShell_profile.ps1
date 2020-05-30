@@ -43,15 +43,22 @@ Function prompt {
 
     # configure prompt-character/delimiter
     $isAdmin = (New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-    $delimiter = "λ"
+
+    # 1/100 magic
+    if ((Get-Random -Maximum 100) -eq 99) {
+        $delimiter = "`n(っ・ω・）っ——☆"
+    } else {
+        $delimiter = "λ"
+    }
+
     if ($isAdmin) {
         $delimiter = "#"
     }
 
     if ($LastExitCode -eq 0) {
-        $returnable += Write-Prompt "$($delimiter * ($nestedPromptLevel + 1))" -ForegroundColor ([ConsoleColor]::Green)
+        $returnable += Write-Prompt "$delimiter" -ForegroundColor ([ConsoleColor]::Green)
     } else {
-        $returnable += Write-Prompt "$($delimiter * ($nestedPromptLevel + 1))" -ForegroundColor ([ConsoleColor]::Red)
+        $returnable += Write-Prompt "$delimiter" -ForegroundColor ([ConsoleColor]::Red)
     }
     "$returnable "
 }
