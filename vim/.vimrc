@@ -40,6 +40,7 @@ call plug#end()
 " powershell currently doesn't work.
 let g:LanguageClient_serverCommands = {
 \ 'javascript': ['powershell', 'javascript-typescript-stdio.ps1'],
+\ 'typescript': ['powershell', 'javascript-typescript-stdio.ps1'],
 \ 'tex': ['~\vimfiles\langservers\latex\texlab.exe'],
 \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
 \ 'ps1': ['~\vimfiles\langservers\PowerShellEditorServices\PowerShellEditorServices\Start-EditorServices.ps1', '-Stdio'],
@@ -89,6 +90,10 @@ if !exists('g:airline_symbols')
     let g:airline_symbols.linenr = ""
 endif
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = '|'
 set laststatus=2
 
 " font sizes are rendered differently, weirdly enough...
