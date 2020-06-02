@@ -160,3 +160,7 @@ if has('nvim')
     lua require 'colorizer'.setup({'*';}, { mode = 'foreground' })
 endif
 
+" startify bookmarks
+let g:startify_bookmarks = [
+    \ '~/.vimrc'
+    \ ]
