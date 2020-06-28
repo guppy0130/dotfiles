@@ -22,3 +22,5 @@
     program = C:\\Program Files (x86)\\gnupg\\bin\\gpg.exe
 [status]
     submoduleSummary = true
+[alias]
+    graph = log --graph
