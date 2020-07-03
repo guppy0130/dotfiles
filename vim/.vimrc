@@ -8,6 +8,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['md', 'tex', 'txt', 'rst'] }
 " filetype specifics
 Plug 'PProvost/vim-ps1', { 'for': ['ps1'] }
+Plug 'cespare/vim-toml', { 'for': ['toml'] }
 " functional
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'powershell -executionpolicy bypass -File install.ps1' }
 Plug 'junegunn/fzf', { 'do': './install.ps1 --bin' }
@@ -44,7 +45,8 @@ let g:LanguageClient_serverCommands = {
 \ 'tex': ['~\vimfiles\langservers\latex\texlab.exe'],
 \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
 \ 'ps1': ['~\vimfiles\langservers\PowerShellEditorServices\PowerShellEditorServices\Start-EditorServices.ps1', '-Stdio'],
-\ 'python': ['pyls']
+\ 'python': ['pyls'],
+\ 'rust': ['rustup', 'run', 'stable', 'rls']
 \ }
 
 " and the language client
