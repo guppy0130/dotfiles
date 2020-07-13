@@ -151,6 +151,9 @@ let NERDTreeIgnore = ['\.aux$', '\.dvi$', '\.ps$', '\.fdb_latexmk$', '\.log$', '
 " NERDTree folder +
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
+" folder icon open
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsDefaultFolderOpenSymbol=''
 " vim-devicons change icons
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
