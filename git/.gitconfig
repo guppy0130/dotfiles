@@ -24,3 +24,4 @@
     submoduleSummary = true
 [alias]
     graph = log --graph
+    hotfix = !git commit -a --amend --no-edit && git push -f
