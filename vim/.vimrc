@@ -55,6 +55,10 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 autocmd BufWritePre *.yml :call LanguageClient#textDocument_formatting_sync()
 
+"""
+" usability configs
+"""
+
 " vim-markdown
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
@@ -67,11 +71,15 @@ let g:echodoc#enable_at_startup = 1
 syntax enable
 filetype plugin indent on
 set number
+set relativenumber
 set noshowmode
 set wrap linebreak nolist
 
 " hide the scrollbar
 set go-=r
+
+" \d closes buffer without closing split
+map <Leader>d :bp<Bar>bd#<Enter>
 
 " backspace usability
 set backspace=2
@@ -81,6 +89,13 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+" anonymous clipboard is now system clipboard
+set clipboard=unnamed
+
+"""
+" aesthetics
+"""
 
 set background=dark
 set encoding=utf-8
@@ -112,6 +127,10 @@ colorscheme base16-ocean
 if has("termguicolors")
     set termguicolors
 endif
+highlight LineNr guifg=gray guibg=5
+highlight CursorLineNr guifg=1 guibg=5
+let NERDTreeHighlightCursorline = 0
+set lazyredraw
 
 let g:neovide_cursor_vfx_mode = "pixiedust"
 let g:neovide_cursor_vfx_particle_lifetime = 1.3
@@ -165,4 +184,4 @@ endif
 " startify bookmarks
 let g:startify_bookmarks = [
     \ '~/.vimrc'
-    \ ]
+\ ]
