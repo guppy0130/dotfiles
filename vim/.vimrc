@@ -31,7 +31,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'albfan/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 if has('nvim')
     Plug 'norcalli/nvim-colorizer.lua'
 endif
