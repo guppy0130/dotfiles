@@ -29,9 +29,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 if has('nvim')
     Plug 'norcalli/nvim-colorizer.lua'
 endif
@@ -157,6 +157,20 @@ let g:DevIconsDefaultFolderOpenSymbol=''
 " vim-devicons change icons
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
+
+" nerdtree-git-plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "M",
+    \ "Staged"    : "S",
+    \ "Untracked" : "N",
+    \ "Renamed"   : "R",
+    \ "Unmerged"  : "«",
+    \ "Deleted"   : "X",
+    \ "Dirty"     : "*",
+    \ "Clean"     : "",
+    \ "Ignored"   : "",
+    \ "Unknown"   : "?"
+\ }
 
 " attempt to reset cursor?
 " dotfile specific.
