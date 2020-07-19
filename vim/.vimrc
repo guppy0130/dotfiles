@@ -19,6 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-syntastic/syntastic'
 Plug 'ajh17/VimCompletesMe'
 Plug 'Shougo/echodoc.vim'
+Plug 'troydm/zoomwintab.vim'
 " aesthetics
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim'
@@ -42,6 +43,7 @@ call plug#end()
 let g:LanguageClient_serverCommands = {
 \ 'javascript': ['powershell', 'javascript-typescript-stdio.ps1'],
 \ 'typescript': ['powershell', 'javascript-typescript-stdio.ps1'],
+\ 'vue': ['powershell', 'javascript-typescript-stdio.ps1'],
 \ 'tex': ['~\vimfiles\langservers\latex\texlab.exe'],
 \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
 \ 'ps1': ['~\vimfiles\langservers\PowerShellEditorServices\PowerShellEditorServices\Start-EditorServices.ps1', '-Stdio'],
@@ -52,7 +54,8 @@ let g:LanguageClient_serverCommands = {
 " and the language client
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
 autocmd BufWritePre *.yml :call LanguageClient#textDocument_formatting_sync()
 
 """
@@ -185,8 +188,17 @@ let g:indentLine_char = '│'
 autocmd FileType json IndentLinesDisable
 autocmd FileType startify IndentLinesDisable
 
+augroup filetype_fzf
+    autocmd!
+    autocmd FileType fzf IndentLinesDisable
+    autocmd FileType fzf set nonumber
+    autocmd FileType fzf set norelativenumber
+augroup END
+
 " fzf
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --style=numbers --color=always {}']}, <bang>0)
+command! -bang -nargs=? -complete=dir GFiles call fzf#vim#gitfiles(<q-args>, {'options': ['--info=inline', '--preview', 'bat --style=numbers --color=always {}']}, <bang>0)
 
 " fix re-source devicons
 if exists("g:loaded_webdevicons")
