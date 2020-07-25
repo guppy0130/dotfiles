@@ -196,9 +196,22 @@ augroup filetype_fzf
 augroup END
 
 " fzf
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'bat --style=numbers --color=always {}']}, <bang>0)
-command! -bang -nargs=? -complete=dir GFiles call fzf#vim#gitfiles(<q-args>, {'options': ['--info=inline', '--preview', 'bat --style=numbers --color=always {}']}, <bang>0)
+command! -bang -nargs=* Find
+    \ call fzf#vim#grep('rg --column --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color=always '.shellescape(<q-args>),
+    \ 1,
+    \ <bang>0)
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>,
+    \ {'options': ['--info=inline', '--preview', 'bat --style=numbers --color=always {}']},
+    \ <bang>0)
+command! -bang -nargs=? -complete=dir GFiles
+    \ call fzf#vim#gitfiles(<q-args>,
+    \ {'options': ['--info=inline', '--preview', 'bat --style=numbers --color=always {}']},
+    \ <bang>0)
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep('rg --column --no-heading --color=always --smart-case -- '.shellescape(<q-args>),
+    \ 1,
+    \ <bang>0)
 
 " fix re-source devicons
 if exists("g:loaded_webdevicons")
