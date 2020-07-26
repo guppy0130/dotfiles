@@ -96,6 +96,10 @@ set expandtab
 " anonymous clipboard is now system clipboard
 set clipboard=unnamed
 
+" <C-Tab> to switch buffers
+nmap <C-Tab> :bn<CR>
+nmap <C-S-Tab> :bp<CR>
+
 """
 " aesthetics
 """
