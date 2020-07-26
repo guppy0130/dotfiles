@@ -100,6 +100,9 @@ set clipboard=unnamed
 nmap <C-Tab> :bn<CR>
 nmap <C-S-Tab> :bp<CR>
 
+":W to write all files
+:command W :bufdo w
+
 """
 " aesthetics
 """
