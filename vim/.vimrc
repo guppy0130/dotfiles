@@ -48,7 +48,8 @@ let g:LanguageClient_serverCommands = {
 \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
 \ 'ps1': ['~\vimfiles\langservers\PowerShellEditorServices\PowerShellEditorServices\Start-EditorServices.ps1', '-Stdio'],
 \ 'python': ['pyls'],
-\ 'rust': ['rustup', 'run', 'stable', 'rls']
+\ 'rust': ['rustup', 'run', 'stable', 'rls'],
+\ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio']
 \ }
 
 " and the language client
@@ -101,7 +102,7 @@ nmap <C-Tab> :bn<CR>
 nmap <C-S-Tab> :bp<CR>
 
 ":W to write all files
-:command W :bufdo w
+:command! W :bufdo w
 
 """
 " aesthetics
@@ -232,5 +233,5 @@ endif
 
 " startify bookmarks
 let g:startify_bookmarks = [
-    \ '~/.vimrc'
+    \ '~/dotfiles/vim/.vimrc'
 \ ]
