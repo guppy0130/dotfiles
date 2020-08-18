@@ -7,6 +7,7 @@ Plug 'reedes/vim-wordy', { 'for': ['md', 'tex', 'txt', 'rst'] }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['md', 'tex', 'txt', 'rst'] }
 " filetype specifics
+Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs'] }
 Plug 'PProvost/vim-ps1', { 'for': ['ps1'] }
 Plug 'cespare/vim-toml', { 'for': ['toml'] }
 " functional
@@ -170,7 +171,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
 
 " nerdtree-git-plugin
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "M",
     \ "Staged"    : "S",
     \ "Untracked" : "N",
