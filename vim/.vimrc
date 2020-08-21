@@ -50,7 +50,8 @@ let g:LanguageClient_serverCommands = {
 \ 'ps1': ['~\vimfiles\langservers\PowerShellEditorServices\PowerShellEditorServices\Start-EditorServices.ps1', '-Stdio'],
 \ 'python': ['pyls'],
 \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-\ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio']
+\ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio'],
+\ 'scss': ['powershell', 'css-languageserver', '--stdio']
 \ }
 
 " and the language client
