@@ -12,7 +12,7 @@ Plug 'PProvost/vim-ps1', { 'for': ['ps1'] }
 Plug 'cespare/vim-toml', { 'for': ['toml'] }
 " functional
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'powershell -executionpolicy bypass -File install.ps1' }
-Plug 'junegunn/fzf', { 'do': './install.ps1 --bin' }
+Plug 'junegunn/fzf', { 'do': 'powershell -executionpolicy bypass -File install.ps1' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -55,10 +55,10 @@ let g:LanguageClient_serverCommands = {
 \ }
 
 " and the language client
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
+nmap <F5> <Plug>(lcn-menu)
+nmap K <Plug>(lcn-hover)
+nmap gd <Plug>(lcn-definition)
+nmap <F2> <Plug>(lcn-rename)
 autocmd BufWritePre *.yml :call LanguageClient#textDocument_formatting_sync()
 
 """
