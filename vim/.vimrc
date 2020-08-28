@@ -47,7 +47,7 @@ let g:LanguageClient_serverCommands = {
 \ 'vue': ['powershell', 'javascript-typescript-stdio.ps1'],
 \ 'tex': ['~\vimfiles\langservers\latex\texlab.exe'],
 \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
-\ 'ps1': ['~\vimfiles\langservers\PowerShellEditorServices\PowerShellEditorServices\Start-EditorServices.ps1', '-Stdio'],
+\ 'ps1': ['powershell', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\Start-EditorServices.ps1', '-BundledModulesPath', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\', '-HostProfileId', '"myclient"', '-HostVersion', '1.0.0', '-Stdio', '-SessionDetailsPath', '${env:temp}\session.json', '-LogPath', '${env:temp}\log'],
 \ 'python': ['pyls'],
 \ 'rust': ['rustup', 'run', 'stable', 'rls'],
 \ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio'],
@@ -161,6 +161,7 @@ autocmd! User GoyoLeave Limelight!
 " also ignore vim swapfiles
 " and node_modules
 let NERDTreeIgnore = ['\.aux$', '\.dvi$', '\.ps$', '\.fdb_latexmk$', '\.log$', '\.pdf$', '\.fls$', '\.swp$', '\.bbl$', '\.bcf$', '\.blg$', '\.xml$', '\.ttt$', '\.fff$', 'node_modules']
+nnoremap T :NERDTreeToggle<CR>
 " NERDTree folder +
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
@@ -230,7 +231,7 @@ endif
 
 " colorizer
 if has('nvim')
-    lua require 'colorizer'.setup({'*';}, { mode = 'foreground' })
+    lua require 'colorizer'.setup({'*';}, { mode = 'background' })
 endif
 
 " startify bookmarks
