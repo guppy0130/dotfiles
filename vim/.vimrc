@@ -18,7 +18,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-syntastic/syntastic'
-Plug 'ajh17/VimCompletesMe'
+" Plug 'ajh17/VimCompletesMe'
 Plug 'Shougo/echodoc.vim'
 Plug 'troydm/zoomwintab.vim'
 " aesthetics
@@ -36,8 +36,28 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 if has('nvim')
     Plug 'norcalli/nvim-colorizer.lua'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+ else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 call plug#end()
+
+" deoplete
+set completeopt+=noinsert
+set completeopt+=noselect
+set completeopt-=preview
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_camel_case = 1
+
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+set runtimepath+=~/vimfiles/snippets/
 
 " set up language servers
 " powershell currently doesn't work.
@@ -45,7 +65,7 @@ let g:LanguageClient_serverCommands = {
 \ 'javascript': ['powershell', 'javascript-typescript-stdio.ps1'],
 \ 'typescript': ['powershell', 'javascript-typescript-stdio.ps1'],
 \ 'vue': ['powershell', 'javascript-typescript-stdio.ps1'],
-\ 'tex': ['~\vimfiles\langservers\latex\texlab.exe'],
+\ 'tex': ['powershell', '~\vimfiles\langservers\latex\texlab.exe'],
 \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
 \ 'ps1': ['powershell', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\Start-EditorServices.ps1', '-BundledModulesPath', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\', '-HostProfileId', '"myclient"', '-HostVersion', '1.0.0', '-Stdio', '-SessionDetailsPath', '${env:temp}\session.json', '-LogPath', '${env:temp}\log'],
 \ 'python': ['pyls'],
@@ -53,6 +73,9 @@ let g:LanguageClient_serverCommands = {
 \ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio'],
 \ 'scss': ['powershell', 'css-languageserver', '--stdio']
 \ }
+
+" the one true tex type:
+let g:tex_flavor = "latex"
 
 " and the language client
 nmap <F5> <Plug>(lcn-menu)
