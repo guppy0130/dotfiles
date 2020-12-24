@@ -6,6 +6,7 @@ Plug 'reedes/vim-pencil', { 'for': ['md', 'tex', 'txt', 'rst'] }
 Plug 'reedes/vim-wordy', { 'for': ['md', 'tex', 'txt', 'rst'] }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['md', 'tex', 'txt', 'rst'] }
+Plug 'lervag/vimtex', { 'for': ['tex'] }
 " filetype specifics
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs'] }
 Plug 'PProvost/vim-ps1', { 'for': ['ps1'] }
@@ -18,7 +19,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-syntastic/syntastic'
-" Plug 'ajh17/VimCompletesMe'
 Plug 'Shougo/echodoc.vim'
 Plug 'troydm/zoomwintab.vim'
 " aesthetics
@@ -30,7 +30,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -67,11 +67,13 @@ let g:LanguageClient_serverCommands = {
 \ 'vue': ['powershell', 'javascript-typescript-stdio.ps1'],
 \ 'tex': ['powershell', '~\vimfiles\langservers\latex\texlab.exe'],
 \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
+\ 'json': ['powershell', 'node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
 \ 'ps1': ['powershell', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\Start-EditorServices.ps1', '-BundledModulesPath', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\', '-HostProfileId', '"myclient"', '-HostVersion', '1.0.0', '-Stdio', '-SessionDetailsPath', '${env:temp}\session.json', '-LogPath', '${env:temp}\log'],
 \ 'python': ['pyls'],
 \ 'rust': ['rustup', 'run', 'stable', 'rls'],
 \ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio'],
-\ 'scss': ['powershell', 'css-languageserver', '--stdio']
+\ 'scss': ['powershell', 'css-languageserver', '--stdio'],
+\ 'lua': ['powershell', '~\vimfiles\langservers\lua-language-server\server\bin\lua-language-server.exe', '-E', '-e', 'LANG="en"', '~\vimfiles\langservers\lua-language-server\main.lua']
 \ }
 
 " the one true tex type:
@@ -93,6 +95,7 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
@@ -103,6 +106,9 @@ set number
 set relativenumber
 set noshowmode
 set wrap linebreak nolist
+" split panes to the right and below
+set splitright
+set splitbelow
 
 " hide the scrollbar
 set go-=r
@@ -220,6 +226,7 @@ au VimLeave * set guicursor=a:ver1-blinkon1
 let g:indentLine_char = '│'
 " does weird things to JSON, so disable
 autocmd FileType json IndentLinesDisable
+" ugly on startify
 autocmd FileType startify IndentLinesDisable
 
 augroup filetype_fzf
@@ -247,6 +254,17 @@ command! -bang -nargs=* Rg
     \ 1,
     \ <bang>0)
 
+" fzf spell fix
+" https://coreyja.com/vim-spelling-suggestions-fzf/
+function! FzfSpellSink(word)
+    exe 'normal! "_ciw'.a:word
+endfunction
+function! FzfSpell()
+    let suggestions = spellsuggest(expand("<cword>"))
+    return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 15 })
+endfunction
+nnoremap z= :call FzfSpell()<CR>
+
 " fix re-source devicons
 if exists("g:loaded_webdevicons")
     call webdevicons#refresh()
@@ -261,3 +279,7 @@ endif
 let g:startify_bookmarks = [
     \ '~/dotfiles/vim/.vimrc'
 \ ]
+
+if has('mouse')
+    set mouse=a
+endif

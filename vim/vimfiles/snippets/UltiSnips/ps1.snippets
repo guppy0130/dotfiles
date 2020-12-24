@@ -1,0 +1,27 @@
+snippet param "Parameter Block" b
+Param(
+    [Parameter(Mandatory,
+    HelpMessage="$1")]
+    $2
+)
+endsnippet
+
+snippet template "Template" b
+<#
+.SYNOPSIS
+    $1
+.DESCRIPTION
+    $2
+.PARAMETER servername
+    $3
+.EXAMPLE
+
+.NOTES
+    Author: Nick Yang
+    Date:   `!v strftime("%m/%d/%Y")`
+#>
+endsnippet
+
+snippet cmdletbinding "CmdletBinding"
+[CmdletBinding(SupportsShouldProcess=$true)]
+endsnippet

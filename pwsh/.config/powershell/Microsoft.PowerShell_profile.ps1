@@ -2,7 +2,7 @@
 Remove-Alias -Name gm -Force -ErrorAction SilentlyContinue
 # nvim
 Set-Alias -Name vim -Value nvim
-Set-Alias -Name code -Value nvim
+# Set-Alias -Name code -Value nvim
 Set-Alias -Name gvim -Value gnvim
 Set-Alias -Name v -Value gnvim
 
@@ -11,9 +11,9 @@ Function latex {
 }
 
 # python-language-server
-Function pyls {
-    docker run --rm --name pyls -it python:2-alpine sh -c 'apk add build-base > /dev/null && pip install python-language-server > /dev/null && pyls'
-}
+# Function pyls {
+#     docker run --rm --name pyls -it python:2-alpine sh -c 'apk add build-base > /dev/null && pip install python-language-server > /dev/null && pyls'
+# }
 
 # modules!
 Import-Module PSFzf
@@ -25,6 +25,7 @@ Import-Module PSDotFiles
 # ...for some reason, we still need the EDITOR variable...
 Set-Variable -Name "EDITOR" -Value "nvim"
 Set-Variable -Name "FZF_DEFAULT_COMMAND" -Value 'rg --files --hidden --follow --glob "!.git/*"'
+Set-Variable -Name "FZF_CTRL_T_OPTS" -Value '--preview "bat --style=numbers --color=always --line-range :500 {}"'
 Set-Variable -Name "DotFilesPath" -Value "$HOME\dotfiles"
 
 # stuff for posh-git
@@ -62,3 +63,6 @@ Function prompt {
     }
     "$returnable "
 }
+
+# Import git-status-cache-posh-client
+Import-Module 'D:\Git\git-status-cache-posh-client\GitStatusCachePoshClient.psm1'

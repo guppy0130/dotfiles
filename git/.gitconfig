@@ -14,7 +14,7 @@
 [core]
     excludesfile = ~/.gitignore
     ignorecase = false
-    autocrlf = false
+	autocrlf = input
     autoeol = lf
     eol = lf
     editor = nvim
@@ -25,3 +25,5 @@
 [alias]
     graph = log --graph
     hotfix = !git commit -a --amend --no-edit && git push -f
+[push]
+	default = current
