@@ -215,10 +215,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Unknown"   : "?"
 \ }
 
-" attempt to reset cursor?
-" dotfile specific.
-au VimLeave * set guicursor=a:ver1-blinkon1
-
 " handy macro to change 2-space to 4
 " set ts=2 noet | retab! | set et ts=4 | retab
 
