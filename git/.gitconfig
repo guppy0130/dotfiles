@@ -2,8 +2,6 @@
     name = guppy0130
     email = guppy0130@yahoo.com
     signingkey = 9BC659A8D852FAE15936F18AB12A0C868D6866AC
-[includeIf "gitdir:berkeley/sait/"] # SAIT @ Berkeley
-    path = .gitconfig-sait
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
@@ -24,6 +22,12 @@
     submoduleSummary = true
 [alias]
     graph = log --graph
-    hotfix = !git commit -a --amend --no-edit && git push -f
+    hotfix = !git commit --amend --no-edit && git push -f
+	co = checkout
+	hfx = hotfix
+	hfxa = !git commit -a --amend --no-edit && git push -f
+	go = graph --pretty=oneline
 [push]
 	default = current
+[init]
+	defaultBranch = main

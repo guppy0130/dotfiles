@@ -1,3 +1,8 @@
+let data_dir = '~/vimfiles'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 call plug#begin('~/vimfiles/bundle')
 " these are for text
 Plug 'dbmrq/vim-ditto', { 'for': ['md', 'tex', 'txt', 'rst'] }
@@ -12,8 +17,11 @@ Plug 'mustache/vim-mustache-handlebars', { 'for': ['hbs'] }
 Plug 'PProvost/vim-ps1', { 'for': ['ps1'] }
 Plug 'cespare/vim-toml', { 'for': ['toml'] }
 " functional
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'powershell -executionpolicy bypass -File install.ps1' }
-Plug 'junegunn/fzf', { 'do': 'powershell -executionpolicy bypass -File install.ps1' }
+if has('win32')
+    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'powershell -executionpolicy bypass -File install.ps1' }
+else
+    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+endif
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -61,20 +69,22 @@ set runtimepath+=~/vimfiles/snippets/
 
 " set up language servers
 " powershell currently doesn't work.
-let g:LanguageClient_serverCommands = {
-\ 'javascript': ['powershell', 'javascript-typescript-stdio.ps1'],
-\ 'typescript': ['powershell', 'javascript-typescript-stdio.ps1'],
-\ 'vue': ['powershell', 'javascript-typescript-stdio.ps1'],
-\ 'tex': ['powershell', '~\vimfiles\langservers\latex\texlab.exe'],
-\ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
-\ 'json': ['powershell', 'node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
-\ 'ps1': ['powershell', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\Start-EditorServices.ps1', '-BundledModulesPath', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\', '-HostProfileId', '"myclient"', '-HostVersion', '1.0.0', '-Stdio', '-SessionDetailsPath', '${env:temp}\session.json', '-LogPath', '${env:temp}\log'],
-\ 'python': ['pyls'],
-\ 'rust': ['rustup', 'run', 'stable', 'rls'],
-\ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio'],
-\ 'scss': ['powershell', 'css-languageserver', '--stdio'],
-\ 'lua': ['powershell', '~\vimfiles\langservers\lua-language-server\server\bin\lua-language-server.exe', '-E', '-e', 'LANG="en"', '~\vimfiles\langservers\lua-language-server\main.lua']
-\ }
+if has('win32')
+    let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['powershell', 'javascript-typescript-stdio.ps1'],
+    \ 'typescript': ['powershell', 'javascript-typescript-stdio.ps1'],
+    \ 'vue': ['powershell', 'javascript-typescript-stdio.ps1'],
+    \ 'tex': ['powershell', '~\vimfiles\langservers\latex\texlab.exe'],
+    \ 'yaml': ['node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
+    \ 'json': ['powershell', 'node', '~\vimfiles\langservers\yaml-language-server\out\server\src\server.js', '--stdio'],
+    \ 'ps1': ['powershell', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\Start-EditorServices.ps1', '-BundledModulesPath', '~\vimfiles\langservers\PowerShellEditorServices\module\PowerShellEditorServices\', '-HostProfileId', '"myclient"', '-HostVersion', '1.0.0', '-Stdio', '-SessionDetailsPath', '${env:temp}\session.json', '-LogPath', '${env:temp}\log'],
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'vim': ['powershell', 'vim-language-server.ps1', '--stdio'],
+    \ 'scss': ['powershell', 'css-languageserver', '--stdio'],
+    \ 'lua': ['powershell', '~\vimfiles\langservers\lua-language-server\server\bin\lua-language-server.exe', '-E', '-e', 'LANG="en"', '~\vimfiles\langservers\lua-language-server\main.lua']
+    \ }
+endif
 
 " the one true tex type:
 let g:tex_flavor = "latex"
