@@ -18,15 +18,29 @@ pathmunge() {
   fi
 }
 pathmunge "$HOME/.fzf/bin"
+pathmunge "$HOME/.local/bin"
 
 # if fzf isn't installed, install it (and don't generate ~/.fzf.{bash,zsh} to keep $HOME clean)
 [ -x "$(command -v fzf)" ] || (git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --no-key-bindings --no-completion --no-update-rc --bin)
 
 # ZSH specific configs
-# if fzf-tab is not a directory/doesn't exist, clone it down
-[ -d "$ZSH_CUSTOM/plugins/fzf-tab" ] || (mkdir -p "$ZSH_CUSTOM/plugins" && git clone --depth 1 https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab")
+
 # these are guaranteed to exist so add helpers
-plugins=(git fzf ssh-agent fzf-tab)
+plugins=(git fzf ssh-agent)
+
+# helper fx to install plugin ($1) from git url ($2)
+# then automatically add to plugins array
+install_zsh_plugin() {
+  # $1 is plugin name
+  # $2 is git URL
+  dest_dir="$ZSH_CUSTOM/plugins/$1"
+  [ -d "$dest_dir" ] || (mkdir -p "$ZSH_CUSTOM/plugins" && git clone --depth 1 "$2" "$dest_dir")
+
+  plugins+=("$1")
+}
+# if fzf-tab is not a directory/doesn't exist, clone it down
+install_zsh_plugin "fzf-tab" "https://github.com/Aloxaf/fzf-tab"
+install_zsh_plugin "conda-zsh-completion" "https://github.com/esc/conda-zsh-completion"
 
 # if docker is installed, add to plugins
 [ -x "$(command -v docker)" ] && plugins+=(docker docker-compose)
