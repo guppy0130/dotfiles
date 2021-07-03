@@ -12,7 +12,7 @@
 [core]
     excludesfile = ~/.gitignore
     ignorecase = false
-	autocrlf = input
+    autocrlf = input
     autoeol = lf
     eol = lf
     editor = nvim
@@ -23,11 +23,19 @@
 [alias]
     graph = log --graph
     hotfix = !git commit --amend --no-edit && git push -f
-	co = checkout
-	hfx = hotfix
-	hfxa = !git commit -a --amend --no-edit && git push -f
-	go = graph --pretty=oneline
+    co = checkout
+    hfx = hotfix
+    hfxa = !git commit -a --amend --no-edit && git push -f
+    go = graph --pretty=oneline
 [push]
-	default = current
+    default = current
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[rebase]
+    autoStash = true
+[pull]
+    rebase = true
+[fetch]
+    prune = true
+[diff]
+    colorMoved = zebra
