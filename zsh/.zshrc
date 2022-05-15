@@ -9,7 +9,7 @@ export ZSH_CUSTOM="$ZSH/custom"
 # add fzf to $PATH so the next command works
 # https://unix.stackexchange.com/a/217629
 pathmunge() {
-  if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
+  if ! echo "$PATH" | grep -Eq "(^|:)$1($|:)"; then
     if [ "$2" = "after" ]; then
       PATH="$PATH:$1"
     else
