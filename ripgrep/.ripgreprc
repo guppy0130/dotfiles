@@ -1,0 +1,5 @@
+# vim:ft=ini
+
+# easier clicking in vscode
+--no-heading
+--with-filename
