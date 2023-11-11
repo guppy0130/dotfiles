@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$ZSH/custom"
 
 # these are guaranteed to exist so add helpers
-plugins=(git fzf ssh-agent)
+plugins=(git fzf ssh-agent dotenv)
 
 # helper fx to install plugin ($1) from git url ($2)
 # then automatically add to plugins array
@@ -23,14 +23,17 @@ install_zsh_plugin() {
 
 # if fzf-tab is not a directory/doesn't exist, clone it down
 install_zsh_plugin "fzf-tab" "https://github.com/Aloxaf/fzf-tab"
-install_zsh_plugin "conda-zsh-completion" "https://github.com/esc/conda-zsh-completion"
+# install_zsh_plugin "conda-zsh-completion" "https://github.com/esc/conda-zsh-completion"
 
-# if command exissts, add its plugin
+# if command exists, add its plugin
 [ -x "$(command -v docker)" ] && plugins+=(docker docker-compose)
 [ -x "$(command -v nvm)" ] && plugins+=(nvm)
 [ -x "$(command -v cargo)" ] && plugins+=(rust)
 [ -x "$(command -v go)" ] && plugins+=(golang)
+[ -x "$(command -v tmux)" ] && plugins+=(tmux)
+[ -x "$(command -v terraform)" ] && plugins+=(terraform)
 [ -x "$(command -v kubectl)" ] && plugins+=(kubectl)
+# (( ${+commands[kubectl]} )) && plugins+=(kubectl)
 
 # shell things
 source "$ZSH/oh-my-zsh.sh"

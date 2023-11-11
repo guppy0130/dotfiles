@@ -11,4 +11,5 @@ export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
 # F: quit if one screen
 # R: raw control chars (color)
 # X: no init
-export LESS="$LESS -FRX"
+# r: raw control chars (links)
+export LESS="$LESS -FRXr"

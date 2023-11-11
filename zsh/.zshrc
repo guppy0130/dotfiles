@@ -17,3 +17,7 @@ bindkey "^[[1;5D" backward-word
 for f in ~/.zsh/applications/*.*sh; do
   source "$f"
 done
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export EDITOR=nvim
