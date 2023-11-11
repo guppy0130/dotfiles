@@ -50,14 +50,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 if has('nvim')
-    Plug 'norcalli/nvim-colorizer.lua'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
- else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 call plug#end()
 
@@ -101,7 +101,16 @@ nmap <F5> <Plug>(lcn-menu)
 nmap K <Plug>(lcn-hover)
 nmap gd <Plug>(lcn-definition)
 nmap <F2> <Plug>(lcn-rename)
-autocmd BufWritePre *.yml :call LanguageClient#textDocument_formatting_sync()
+
+" https://github.com/autozimu/LanguageClient-neovim/issues/956
+function! MaybeFormat() abort
+    if !has_key(g:LanguageClient_serverCommands, &filetype)
+        return
+    endif
+
+    call LanguageClient#textDocument_formatting_sync()
+endfunction
+autocmd BufWritePre *.yml call MaybeFormat()
 
 """
 " usability configs
@@ -172,14 +181,11 @@ let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 set laststatus=2
 
-" font sizes are rendered differently, weirdly enough...
+" assuming you've `brew install font-fira-code-nerd-font`
+set guifont=FiraCode\ Nerd\ Font\ Ret:h13
 if !has('nvim')
     " nvim doesn't need this
     set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
-    set guifont=FiraCode\ NF:h11
-else
-    " set guifont=FiraCode\ NF:h13
-    set guifont=FiraCode\ NF\ Retina:h13
 endif
 colorscheme base16-ocean
 
@@ -296,3 +302,5 @@ let g:startify_bookmarks = [
 if has('mouse')
     set mouse=a
 endif
+
+let g:python3_host_prog = "/Users/nickyang/.venvs/base/bin/python3"

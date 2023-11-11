@@ -16,8 +16,9 @@
     autoeol = lf
     eol = lf
     editor = nvim
+    pager = delta
 [gpg]
-    program = C:\\Program Files (x86)\\gnupg\\bin\\gpg.exe
+    # program = C:\\Program Files (x86)\\gnupg\\bin\\gpg.exe
 [status]
     submoduleSummary = true
 [alias]
@@ -39,3 +40,28 @@
     prune = true
 [diff]
     colorMoved = zebra
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+[tag]
+    sort = -version:refname  # sort tags in order, biggest first
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    features = side-by-side unobtrusive-line-numbers decorations
+    whitespace-error-style = 22 reverse
+    hyperlinks = true
+[delta "unobtrusive-line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = "#444444"
+    line-numbers-zero-style = "#444444"
+    line-numbers-plus-style = "#444444"
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = blue
+    line-numbers-right-style = blue
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = yellow box
