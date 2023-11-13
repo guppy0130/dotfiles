@@ -50,14 +50,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 if has('nvim')
-    Plug 'norcalli/nvim-colorizer.lua'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
- else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 call plug#end()
 
@@ -181,14 +181,11 @@ let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 set laststatus=2
 
-" font sizes are rendered differently, weirdly enough...
+" assuming you've `brew install font-fira-code-nerd-font`
+set guifont=FiraCode\ Nerd\ Font\ Ret:h13
 if !has('nvim')
     " nvim doesn't need this
     set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
-    set guifont=Fira\ Code:h11
-else
-    " set guifont=FiraCode\ NF:h13
-    set guifont=Fira\ Code\ Retina:h13
 endif
 colorscheme base16-ocean
 
