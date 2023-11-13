@@ -22,7 +22,7 @@
 [status]
     submoduleSummary = true
 [alias]
-    graph = log --graph
+    graph = log --graph --exclude refs/branchless/*
     hotfix = !git commit --amend --no-edit && git push -f
     co = checkout
     hfx = hotfix
@@ -36,6 +36,7 @@
     autoStash = true
 [pull]
     rebase = true
+    twohead = ort
 [fetch]
     prune = true
 [diff]
@@ -48,7 +49,7 @@
     sort = -version:refname  # sort tags in order, biggest first
 [delta]
     navigate = true  # use n and N to move between diff sections
-    features = side-by-side unobtrusive-line-numbers decorations
+    features = side-by-side unobtrusive-line-numbers decorations zebra-dark
     whitespace-error-style = 22 reverse
     hyperlinks = true
 [delta "unobtrusive-line-numbers"]
