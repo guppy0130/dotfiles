@@ -47,6 +47,7 @@
     conflictstyle = diff3
 [tag]
     sort = -version:refname  # sort tags in order, biggest first
+	gpgSign = true
 [delta]
     navigate = true  # use n and N to move between diff sections
     features = side-by-side unobtrusive-line-numbers decorations zebra-dark
