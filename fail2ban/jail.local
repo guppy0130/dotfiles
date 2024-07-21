@@ -1,0 +1,17 @@
+# vim: ft=ini
+[DEFAULT]
+ignoreip    = 73.15.180.224/32 207.237.193.124/32
+bantime     = 21600
+findtime    = 300
+maxretry    = 3
+banaction = firewallcmd-rich-rules[actiontype=<multiport>]
+banaction_allports = firewallcmd-rich-rules[actiontype=<allports>]
+backend     = systemd
+
+[sshd]
+enabled     = true
+action      = firewallcmd-new
+              pushover
+              geoip-loki
+mode        = aggressive
+publickey   = invalid
