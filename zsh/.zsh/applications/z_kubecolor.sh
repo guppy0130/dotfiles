@@ -2,6 +2,8 @@
 
 alias k='kubecolor'
 alias kubectl='kubecolor'
-compdef kubecolor=kubectl
 
-pathmunge "${HOME}/.krew/bin"
+if command -v kubectl &>/dev/null; then
+  compdef kubecolor=kubectl
+  pathmunge "${HOME}/.krew/bin"
+fi
