@@ -34,6 +34,9 @@ install_zsh_plugin "fzf-tab" "https://github.com/Aloxaf/fzf-tab"
 [ -x "$(command -v terraform)" ] && plugins+=(terraform)
 [ -x "$(command -v kubectl)" ] && plugins+=(kubectl)
 # (( ${+commands[kubectl]} )) && plugins+=(kubectl)
+#
+# configure the omz plugin options
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
 
 # shell things
 source "$ZSH/oh-my-zsh.sh"
