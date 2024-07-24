@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# vim:tw=2:sw=2
+# vim:sw=2
 
 # https://unix.stackexchange.com/a/217629
 pathmunge() {

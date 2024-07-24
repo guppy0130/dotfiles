@@ -1,5 +1,5 @@
 #!/bin/zsh
-# vim:tw=2:sw=2
+# vim:sw=2
 
 # source everything in aliases and functions
 for f in ~/.zsh/{aliases,functions}/*.*sh; do

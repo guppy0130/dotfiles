@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# vim:tw=2:sw=2
+# vim:sw=2
 
 # if oh-my-zsh isn't installed, install it
 export ZSH="$HOME/.oh-my-zsh"

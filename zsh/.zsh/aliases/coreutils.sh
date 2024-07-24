@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# vim:tw=2:sw=2
+# vim:sw=2
 
 # always show (almost) everything (skip . and .. dirs)
 alias ls="ls -A --color=auto"
