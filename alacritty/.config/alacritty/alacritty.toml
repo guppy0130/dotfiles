@@ -1,0 +1,6 @@
+[general]
+live_config_reload = true
+
+[font]
+normal = { family = "FiraCode Nerd Font", style = "Retina" }
+builtin_box_drawing = false
