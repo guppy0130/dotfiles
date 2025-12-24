@@ -67,3 +67,5 @@
     file-style = bold yellow ul
     file-decoration-style = none
     hunk-header-decoration-style = yellow box
+[submodule]
+	recurse = true
